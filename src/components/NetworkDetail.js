@@ -89,7 +89,14 @@ const NetworkDetail = ({ isOpen, onClose, id, name }) => {
                     bgColor="gray.200"
                     mt={4}
                   >
-                    <Heading as="h4" size="sm" color="gray.500">
+                    <Heading
+                      as="a"
+                      href={`https://maps.google.com/maps/?q=${station.latitude},${station.longitude}`}
+                      target="_blank"
+                      _hover={{ opacity: "0.8" }}
+                      size="sm"
+                      color="gray.500"
+                    >
                       {`${index + 1}. ${station.name}`}
                     </Heading>
                   </Flex>
