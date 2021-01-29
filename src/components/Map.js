@@ -3,14 +3,18 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions";
 
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
+mapboxgl.accessToken =
+  "pk.eyJ1Ijoia3Jpc3RvZmtvdmFjcyIsImEiOiJjandreTUwZG8weGszNDhxa2gycGVtM3o2In0.K366AmZiqxLwKxUANX-cuw";
 class Map extends React.Component {
   componentDidMount() {
     // Creates new map instance
     const map = new mapboxgl.Map({
       container: this.mapWrapper,
       style: "mapbox://styles/mapbox/streets-v10",
-      center: [-73.985664, 40.748514],
+      center: [
+        this.props.stations[0].longitude,
+        this.props.stations[0].latitude,
+      ],
       zoom: 12,
     });
 
@@ -19,6 +23,17 @@ class Map extends React.Component {
       accessToken: mapboxgl.accessToken,
       unit: "metric",
       profile: "mapbox/driving",
+    });
+    console.log(this.props);
+    this.props.stations.forEach(function (station) {
+      // create a HTML element for each feature
+      var el = document.createElement("div");
+      el.className = "marker";
+
+      // make a marker for each feature and add to the map
+      new mapboxgl.Marker(el)
+        .setLngLat([station.longitude, station.latitude])
+        .addTo(map);
     });
 
     // Integrates directions control with map
@@ -31,7 +46,7 @@ class Map extends React.Component {
       <div
         ref={(el) => (this.mapWrapper = el)}
         className="mapWrapper"
-        style={{ width: "100%", height: "350px" }}
+        style={{ width: "100%", height: "250px" }}
       />
     );
   }

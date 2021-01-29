@@ -77,7 +77,7 @@ const NetworkDetail = ({ isOpen, onClose, id, name }) => {
               <Heading as="h2" size="lg" color="gray.700" mt={5}>
                 Stations
               </Heading>
-              <Map />
+              <Map stations={network.stations} />
               {network.stations.map((station, index) => {
                 return (
                   <Flex
