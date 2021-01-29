@@ -1,8 +1,11 @@
 import React from "react";
-import { Flex, Heading, Text } from "@chakra-ui/react";
+import { Flex, Heading, Text, useDisclosure } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
+import NetworkDetail from "./NetworkDetail";
 
-const Card = ({ name, location, ...props }) => {
+const Card = ({ name, id, location, ...props }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <Flex
@@ -16,6 +19,7 @@ const Card = ({ name, location, ...props }) => {
         transition="all 0.15s ease-in-out"
         bgColor="white"
         style={{ cursor: "pointer" }}
+        onClick={onOpen}
         {...props}
       >
         <Flex direction="column">
@@ -34,6 +38,9 @@ const Card = ({ name, location, ...props }) => {
         </Flex>
         <ChevronRightIcon h={6} w={6} color="teal.600" />
       </Flex>
+      {isOpen && (
+        <NetworkDetail isOpen={isOpen} onClose={onClose} name={name} id={id} />
+      )}
     </>
   );
 };

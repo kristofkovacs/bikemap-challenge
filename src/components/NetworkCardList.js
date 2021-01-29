@@ -13,7 +13,9 @@ const NetworkCardList = ({ data, ...props }) => {
     >
       {data &&
         data.map(({ id, name, location }) => {
-          return <NetworkCard key={id} name={name} location={location} />;
+          return (
+            <NetworkCard key={id} id={id} name={name} location={location} />
+          );
         })}
     </SimpleGrid>
   );
