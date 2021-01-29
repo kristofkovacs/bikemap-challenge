@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import cityBikes from "../api/cityBikes";
+import Map from "./Map";
 
 import {
   Modal,
@@ -76,9 +77,11 @@ const NetworkDetail = ({ isOpen, onClose, id, name }) => {
               <Heading as="h2" size="lg" color="gray.700" mt={5}>
                 Stations
               </Heading>
+              <Map />
               {network.stations.map((station, index) => {
                 return (
                   <Flex
+                    key={index}
                     py={4}
                     px={6}
                     direction="column"
