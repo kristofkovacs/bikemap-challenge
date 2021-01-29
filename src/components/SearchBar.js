@@ -17,7 +17,7 @@ const SearchBar = ({ onSearch }) => {
   return (
     <InputGroup>
       <Input
-        placeholder="Search among Bike Networks..."
+        placeholder="Search among Bike Networks by city name..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         bgColor="white"

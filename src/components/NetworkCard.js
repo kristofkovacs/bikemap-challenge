@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Heading } from "@chakra-ui/react";
+import { Flex, Heading, Text } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 
 const Card = ({ name, location, ...props }) => {
@@ -19,9 +19,15 @@ const Card = ({ name, location, ...props }) => {
         {...props}
       >
         <Flex direction="column">
+          <Text color="gray.400" fontWeight="semibold">
+            Network name
+          </Text>
           <Heading as="h2" size="lg" color="gray.700">
             {name}
           </Heading>
+          <Text color="gray.400" fontWeight="semibold" mt={3}>
+            City
+          </Text>
           <Heading as="h2" size="md" color="gray.600">
             {location.city || "No city added"}
           </Heading>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ChakraProvider, Flex, Spinner } from "@chakra-ui/react";
+import { ChakraProvider, Flex, Heading, Spinner } from "@chakra-ui/react";
 import cityBikes from "./api/cityBikes";
 import NetworkCardList from "./components/NetworkCardList";
 import SearchBar from "./components/SearchBar";
@@ -52,13 +52,31 @@ const App = () => {
               <Spinner
                 thickness="4px"
                 speed="0.5s"
-                emptyColor="blue.50"
-                color="red.600"
+                emptyColor="gray.50"
+                color="blue.100"
                 size="lg"
               />
             </Flex>
-          ) : (
+          ) : filteredNetworks.length ? (
             <NetworkCardList data={filteredNetworks} mt={6}></NetworkCardList>
+          ) : (
+            <Flex
+              justify="center"
+              align="center"
+              py={[12, 12, 20, 64]}
+              px={[4]}
+            >
+              <Heading
+                as="h4"
+                fontSize={[24, 24, 32]}
+                color="gray.100"
+                textAlign="center"
+                maxW={500}
+              >
+                No results for this term. Please try searching for another
+                city...
+              </Heading>
+            </Flex>
           )}
         </Flex>
       </Flex>
