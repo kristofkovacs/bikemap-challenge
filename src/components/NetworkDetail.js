@@ -26,9 +26,6 @@ const NetworkDetail = ({ isOpen, onClose, id, name }) => {
     cityBikes.get(`/networks/${id}`).then(({ data }) => {
       setNetwork(data.network);
       setLoading(false);
-
-      // remove later
-      console.log(data);
     });
   }, []);
 

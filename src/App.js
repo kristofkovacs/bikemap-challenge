@@ -14,9 +14,6 @@ const App = () => {
       setNetworks(data.networks);
       setFilteredNetworks(data.networks);
       setLoading(false);
-
-      // remove later
-      console.log(data);
     });
   }, []);
 
