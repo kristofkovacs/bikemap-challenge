@@ -1,17 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { ChakraProvider, Flex } from "@chakra-ui/react";
+import { ChakraProvider, Flex, Spinner } from "@chakra-ui/react";
 import cityBikes from "./api/cityBikes";
 import NetworkCardList from "./components/NetworkCardList";
+import SearchBar from "./components/SearchBar";
 
 const App = () => {
   const [networks, setNetworks] = useState([]);
+  const [filteredNetworks, setFilteredNetworks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     cityBikes.get("/networks").then(({ data }) => {
       setNetworks(data.networks);
+      setFilteredNetworks(data.networks);
+      setLoading(false);
+
+      // remove later
       console.log(data);
     });
   }, []);
+
+  const onSearch = (searchTerm) => {
+    setFilteredNetworks(
+      networks.filter((network) => {
+        return network.location.city
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+      })
+    );
+  };
 
   return (
     <ChakraProvider>
@@ -22,7 +39,27 @@ const App = () => {
           align="center"
           direction="column"
         >
-          <NetworkCardList data={networks}></NetworkCardList>
+          <SearchBar onSearch={onSearch} />
+
+          {loading ? (
+            <Flex
+              justify="center"
+              align="center"
+              justifySelf="center"
+              alignSelf="center"
+              py={[12, 12, 20, 64]}
+            >
+              <Spinner
+                thickness="4px"
+                speed="0.5s"
+                emptyColor="blue.50"
+                color="red.600"
+                size="lg"
+              />
+            </Flex>
+          ) : (
+            <NetworkCardList data={filteredNetworks} mt={6}></NetworkCardList>
+          )}
         </Flex>
       </Flex>
     </ChakraProvider>
