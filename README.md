@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Bikemap Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a solution for the Bikemap Challenge
 
-## Available Scripts
+Deployed to [Netlify](https://bikemap-challenge.netlify.app)
+(not working because the API isn't secure)
 
-In the project directory, you can run:
+## Getting started
 
-### `yarn start`
+1. Run `yarn install`
+2. Run `yarn start`
+3. Access the app on http://localhost:3000 (or 300x if 3000 is already in use)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Requirements and tasks
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+Create a web client for [this API](http://api.citybik.es/v2/) listing bike sharing networks and their stations. Users want to see if there is bike sharing in the city they live in or visit and find information about it. The app may have the following features:
 
-### `yarn test`
+- List the bike sharing networks
+- Filter / search the list to find your city more quickly
+- Show relevant information about a bike sharing network
+- List the stations of a network
+- Link stations or networks to an external map service to show the location
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
 
-### `yarn build`
+## Solution
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I have managed to create the solution for all the tasks described above. 👆
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The app fetches the given `API`, and retreives networks presented in a `NetworkCardList` consisting of `NetworkCard` items.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+With typing in the `SearchBar` the user has the ability to filter the results.
 
-### `yarn eject`
+By clicking on a `NetworkCard` the user will see a `NetworkDetail` component, which is a modal and is shows the user some more detailed infos about the bike networks and the stations that are added to the given network.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Libraries / Frameworks
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+For the whole solution I have used `React.js` with JavaScript.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+For maintaining a clear and consistent UI I have used `@chakra-ui/react` as a UI library which has some default properties and can be styled really quickly and easily.
+The famous CSS-in-JS library, `styled-components` was the other option I was thinking of using instead of a UI component library, but I thought `chakra` is also pretty readable, customizable and extendable if needed, and I can create the solution way faster in a more consistent way.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Instead of the built-in fetch function I used `axios` for the API requests.
 
-## Learn More
+For presenting the map I have used `mapboxgl`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Trade-offs / Thoughts / Issues
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+I wanted to give you a sneak-peek of how I write my code, and didn't want to overcomplicate or overengineer things with writing my whole components with `styled-components` or include more unnecessary libraries than I used.
 
-### Code Splitting
+The `<App />` and `<NetworkDetail />` component could be decomposed into more components, for example another `<StationCard />` component could be introduced.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+We highly rely on the API, and since the API isn't doing any pagination, we get back 670+ networks which performancewise isn't the most optimal, so I would introduce some kind of pagination to the frontend in order to show only 10-20 results at a time.
+Also after deploying the API did not work, because it's SSL certificate expired and the browsers did not support the communication between `https` and `http`, and I got some CORS issues so it's currently working locally only.
 
-### Analyzing the Bundle Size
+## Conclusion
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+I really liked the test, it became really fun, and after some styling it started to look really nice. Would love to extend the project in the future 😶
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+I'm looking forward to hearing your feedback!
