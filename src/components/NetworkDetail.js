@@ -37,8 +37,8 @@ const NetworkDetail = ({ isOpen, onClose, id, name }) => {
       <ModalOverlay />
       <ModalContent pt={6} bg="gray.100">
         <ModalCloseButton color="red.500" />
-        <ModalHeader color="gray.600" fontWeight="semibold" fontSize={26}>
-          {name}
+        <ModalHeader color="gray.600" fontWeight="semibold" fontSize={28}>
+          Network: <b>{name}</b>
         </ModalHeader>
 
         <ModalBody>
