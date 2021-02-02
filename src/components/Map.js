@@ -18,9 +18,6 @@ class Map extends React.Component {
       ],
       zoom: 12,
     });
-
-    console.log(this.props.stations);
-
     this.props.stations.forEach(function (station, index) {
       var el = document.createElement("div");
       el.className = "marker";
@@ -28,8 +25,9 @@ class Map extends React.Component {
       new mapboxgl.Marker(el)
         .setLngLat([station.longitude, station.latitude])
         .setPopup(
-          new mapboxgl.Popup({ offset: 25 }) // add popups
-            .setHTML("<h3>" + index + ". " + station.name + "</h3>")
+          new mapboxgl.Popup({ offset: 25 }).setHTML(
+            "<h3>" + index + ". " + station.name + "</h3>"
+          )
         )
         .addTo(map);
     });

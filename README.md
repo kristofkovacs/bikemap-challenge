@@ -3,7 +3,6 @@
 This is a solution for the Bikemap Challenge
 
 Deployed to [Netlify](https://bikemap-challenge.netlify.app)
-(not working because the API isn't secure)
 
 ## Getting started
 
@@ -52,7 +51,6 @@ I wanted to give you a sneak-peek of how I write my code, and didn't want to ove
 The `<App />` and `<NetworkDetail />` component could be decomposed into more components, for example another `<StationCard />` component could be introduced.
 
 We highly rely on the API, and since the API isn't doing any pagination, we get back 670+ networks which performancewise isn't the most optimal, so I would introduce some kind of pagination to the frontend in order to show only 10-20 results at a time.
-Also after deploying the API did not work, because it's SSL certificate expired and the browsers did not support the communication between `https` and `http`, and I got some CORS issues so it's currently working locally only.
 
 ## Conclusion
 
