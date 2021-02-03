@@ -4,11 +4,11 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "./Map.css";
 import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
 
-mapboxgl.accessToken =
-  "pk.eyJ1Ijoia3Jpc3RvZmtvdmFjcyIsImEiOiJjandreTUwZG8weGszNDhxa2gycGVtM3o2In0.K366AmZiqxLwKxUANX-cuw";
-
 class Map extends React.Component {
   componentDidMount() {
+    mapboxgl.accessToken =
+      "pk.eyJ1Ijoia3Jpc3RvZmtvdmFjcyIsImEiOiJjandreTUwZG8weGszNDhxa2gycGVtM3o2In0.K366AmZiqxLwKxUANX-cuw";
+
     const map = new mapboxgl.Map({
       container: this.mapWrapper,
       style: "mapbox://styles/mapbox/streets-v10",
